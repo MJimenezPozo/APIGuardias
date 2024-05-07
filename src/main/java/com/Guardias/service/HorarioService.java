@@ -5,10 +5,11 @@
 package com.Guardias.service;
 
 import com.Guardias.model.Horario;
+import java.util.ArrayList;
 /**
  *
  * @author maria
  */
 public interface HorarioService {
-    
+    ArrayList<Horario> list();
 }

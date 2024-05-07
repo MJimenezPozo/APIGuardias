@@ -4,6 +4,7 @@
  */
 package com.Guardias.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.*;
@@ -36,6 +37,7 @@ public class Profesor implements Serializable {
     @Column(name = "password_profesor")
     private String passwordProfesor;
     @OneToMany(mappedBy = "profesor")
+    @JsonIgnore
     private List<Horario> horarioList;
 
     public Profesor() {

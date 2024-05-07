@@ -4,6 +4,7 @@
  */
 package com.Guardias.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.*;
@@ -37,6 +38,7 @@ public class Tarea implements Serializable {
     @Column(name = "exportacion")
     private String exportacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoTarea")
+    @JsonIgnore
     private List<Horario> horarioList;
 
     public Tarea() {

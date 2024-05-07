@@ -4,6 +4,7 @@
  */
 package com.Guardias.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,7 @@ public class HoraSesion implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date fin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "horaSesion")
+    @JsonIgnore
     private List<Horario> horarioList;
 
     public HoraSesion() {
@@ -106,7 +108,7 @@ public class HoraSesion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Guardias.model.HoraSesion[ sesion=" + sesion + " ]";
+        return "Sesión: id: " + this.sesion + ", inicio: "+this.inicio+", fin: "+this.fin;
     }
     
 }

@@ -4,8 +4,10 @@
  */
 package com.Guardias.serviceImpl;
 
+import com.Guardias.model.Horario;
 import com.Guardias.repository.HorarioRepository;
 import com.Guardias.service.HorarioService;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +20,9 @@ public class HorarioServiceImpl implements HorarioService  {
     
     @Autowired
     private HorarioRepository hRepository;
+
+    @Override
+    public ArrayList<Horario> list() {
+        return (ArrayList<Horario>) hRepository.findAll();
+    }
 }
