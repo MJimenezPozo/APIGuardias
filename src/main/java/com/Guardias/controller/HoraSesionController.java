@@ -26,10 +26,10 @@ public class HoraSesionController {
     @Autowired
     HoraSesionServiceImpl hsService;
     
-    
     @GetMapping("/sesiones")
     public ResponseEntity<ArrayList<HoraSesion>> getSesiones(){
-        ArrayList<HoraSesion> sesiones = hsService.list();
+        ArrayList<HoraSesion> sesiones = hsService.consultarTodos();
         return ResponseEntity.ok(sesiones);
     }
+    
 }
