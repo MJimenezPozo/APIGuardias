@@ -28,7 +28,7 @@ public class HorarioController {
     
     @GetMapping("/horarios")
     public ResponseEntity<ArrayList<Horario>> getHorarios(){
-        ArrayList<Horario> horarios = hService.list();
+        ArrayList<Horario> horarios = hService.consultarTodos();
         return ResponseEntity.ok(horarios);
     }
 }
