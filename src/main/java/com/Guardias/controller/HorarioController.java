@@ -4,11 +4,13 @@
  */
 package com.Guardias.controller;
 
+import com.Guardias.DTO.HorarioDto;
 import com.Guardias.model.Horario;
 import com.Guardias.serviceImpl.HorarioServiceImpl;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +29,18 @@ public class HorarioController {
     HorarioServiceImpl hService;
     
     @GetMapping("/horarios")
-    public ResponseEntity<ArrayList<Horario>> getHorarios(){
+    public ResponseEntity<ArrayList<HorarioDto>> getHorarios(){
+        
         ArrayList<Horario> horarios = hService.consultarTodos();
-        return ResponseEntity.ok(horarios);
+        
+        ArrayList<HorarioDto> horariosDevolver = new ArrayList<>();
+        
+        for(Horario horario : horarios){
+            
+            horariosDevolver.add(HorarioDto.toHorarioDto(horario));
+            
+        }
+        
+        return new ResponseEntity<>(horariosDevolver, HttpStatus.OK);
     }
 }
