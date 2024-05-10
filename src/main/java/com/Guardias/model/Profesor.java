@@ -24,7 +24,11 @@ import jakarta.persistence.*;
 public class Profesor implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @Column(name = "id")
+    @Basic(optional = false)
+    private int id;
     @Basic(optional = false)
     @Column(name = "id_profesor")
     private String idProfesor;
@@ -43,16 +47,26 @@ public class Profesor implements Serializable {
     public Profesor() {
     }
 
-    public Profesor(String idProfesor) {
-        this.idProfesor = idProfesor;
+    public Profesor(int id) {
+        this.id = id;
     }
 
-    public Profesor(String idProfesor, String nombreProfesor, String apellidosProfesor) {
+    public Profesor(int id,String idProfesor, String nombreProfesor, String apellidosProfesor) {
+        this.id = id;
         this.idProfesor = idProfesor;
         this.nombreProfesor = nombreProfesor;
         this.apellidosProfesor = apellidosProfesor;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public String getIdProfesor() {
         return idProfesor;
     }
@@ -101,21 +115,23 @@ public class Profesor implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Profesor)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Profesor other = (Profesor) object;
-        if ((this.idProfesor == null && other.idProfesor != null) || (this.idProfesor != null && !this.idProfesor.equals(other.idProfesor))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Profesor other = (Profesor) obj;
+        return this.id == other.id;
     }
-
+    
     @Override
     public String toString() {
-        return "com.Guardias.model.Profesor[ idProfesor=" + idProfesor + " ]";
+        return "com.Guardias.model.Profesor[ id=" + id + " ]";
     }
     
 }
