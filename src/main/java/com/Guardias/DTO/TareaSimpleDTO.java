@@ -15,11 +15,11 @@ import lombok.Setter;
  * @author Andrea
  */
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class TareaSimpleDTO {
+public class TareaSimpleDto {
     private String clave;
     private String descripcion;
     
-    public TareaSimpleDTO(Tarea t){
+    public TareaSimpleDto(Tarea t){
         this.clave = t.getClave();
         this.descripcion = t.getDescripcion();
     }

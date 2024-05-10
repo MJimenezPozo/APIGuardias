@@ -4,7 +4,7 @@
  */
 package com.Guardias.controller;
 
-import com.Guardias.DTO.TareaSimpleDTO;
+import com.Guardias.DTO.TareaSimpleDto;
 import com.Guardias.model.Tarea;
 import com.Guardias.serviceImpl.TareaServiceImpl;
 import jakarta.transaction.Transactional;
@@ -34,19 +34,19 @@ public class TareaController {
     TareaServiceImpl tService;
     
     @GetMapping("/tareas")
-    public ResponseEntity<ArrayList<TareaSimpleDTO>> getTareaSimple(){
+    public ResponseEntity<ArrayList<TareaSimpleDto>> getTareaSimple(){
         ArrayList<Tarea> allTareas = tService.consultarTodos();
-        ArrayList<TareaSimpleDTO> listaTareas = new ArrayList<TareaSimpleDTO>();
+        ArrayList<TareaSimpleDto> listaTareas = new ArrayList<TareaSimpleDto>();
         for (Tarea tareas : allTareas){
-            listaTareas.add(new TareaSimpleDTO(tareas));
+            listaTareas.add(new TareaSimpleDto(tareas));
         }
         return ResponseEntity.ok(listaTareas);
     }
     
     @GetMapping("/tareas/{clave}")
-    public ResponseEntity<TareaSimpleDTO> getTareaPorClave(@PathVariable String clave){
+    public ResponseEntity<TareaSimpleDto> getTareaPorClave(@PathVariable String clave){
         Tarea tarea = tService.obtener(clave);
-        TareaSimpleDTO tareasimple = new TareaSimpleDTO(tarea);
+        TareaSimpleDto tareasimple = new TareaSimpleDto(tarea);
         if (tarea.getClave() == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,7 +55,7 @@ public class TareaController {
     
     
     @PostMapping("/newTarea")
-    public ResponseEntity<TareaSimpleDTO> postTarea(@RequestBody TareaSimpleDTO tareaDTO){ 
+    public ResponseEntity<TareaSimpleDto> postTarea(@RequestBody TareaSimpleDto tareaDTO){ 
         Tarea tarea = new Tarea();
         
         tarea.setClave(tareaDTO.getClave());
@@ -69,7 +69,7 @@ public class TareaController {
         }
 
         Tarea tareaDevolver = tService.registrar(tarea);
-        TareaSimpleDTO tareaDevDTO = new TareaSimpleDTO(tareaDevolver);
+        TareaSimpleDto tareaDevDTO = new TareaSimpleDto(tareaDevolver);
   
         return new ResponseEntity<>(tareaDevDTO, HttpStatus.CREATED);
     }
@@ -86,7 +86,7 @@ public class TareaController {
     }
     
     @PutMapping("/tareas/{clave}")
-    public ResponseEntity<TareaSimpleDTO> actualizaTarea(@RequestBody TareaSimpleDTO tareaSimple,
+    public ResponseEntity<TareaSimpleDto> actualizaTarea(@RequestBody TareaSimpleDto tareaSimple,
             @PathVariable String clave) {
         
         Tarea tarea = tService.obtener(clave);
