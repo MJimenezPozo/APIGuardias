@@ -6,7 +6,7 @@ package com.Guardias.serviceImpl;
 
 import com.Guardias.model.Tarea;
 import com.Guardias.repository.TareaRepository;
-import com.Guardias.service.TareaService;
+import com.Guardias.service.IBaseService;
 import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @author maria
  */
 @Service
-public class TareaServiceImpl implements TareaService{
+public class TareaServiceImpl implements IBaseService<Tarea>{
 
     
     @Autowired
@@ -29,23 +29,32 @@ public class TareaServiceImpl implements TareaService{
     }
 
     @Override
-    public Tarea modificar(Tarea tarea) {
+    public Tarea actualizar(Tarea tarea) {
         return tRepository.save(tarea);
     }
 
-    @Override
-    public ArrayList<Tarea> listar() {
+     public ArrayList<Tarea> consultarTodos() {
         return (ArrayList<Tarea>) tRepository.findAll();
     }
 
-    @Override
     public Tarea obtener(String clave) {
         Optional<Tarea> op = tRepository.findByClave(clave);
         return op.isPresent()?op.get():new Tarea();
     }
-
-    @Override
+    
     public void eliminar(String clave) {
         tRepository.deleteByClave(clave);
     }
+
+    @Override
+    public void eliminar(Integer id) {
+        
+    }
+
+    @Override
+    public Tarea consultar(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }
+
