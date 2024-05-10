@@ -5,10 +5,11 @@
 package com.Guardias.service;
 
 import com.Guardias.model.Profesor;
+import java.util.ArrayList;
 /**
  *
  * @author maria
  */
 public interface ProfesorService {
-    
+    ArrayList<Profesor> list();
 }
