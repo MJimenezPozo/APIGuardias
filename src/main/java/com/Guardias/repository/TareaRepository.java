@@ -5,6 +5,7 @@
 package com.Guardias.repository;
 
 import com.Guardias.model.Tarea;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author maria
  */
 public interface TareaRepository extends JpaRepository<Tarea, Integer> {
+    Optional<Tarea> findByClave(String clave);
     
+    void deleteByClave(String clave);
 }
