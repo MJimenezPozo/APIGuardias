@@ -5,12 +5,15 @@
 package com.Guardias.repository;
 
 import com.Guardias.model.Profesor;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
  * @author maria
  */
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
-    
+    @Query("SELECT nextval('public.profesor_id_seq')")
+    Integer nextIdProfesor();
 }
