@@ -22,9 +22,16 @@ public class ProfesorServiceImpl implements IBaseService<Profesor> {
     }
     @Autowired
     private ProfesorRepository pRepository;
-
+    
+    /**
+     * Método que registra un profesor
+     * @param p
+     * @return 
+     */
     @Override
     public Profesor registrar(Profesor p) {
+        int idRecogido=pRepository.nextIdProfesor();
+        p.setId(idRecogido);
         return pRepository.save(p);
     }
 
