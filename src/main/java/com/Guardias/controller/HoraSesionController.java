@@ -5,6 +5,7 @@
 package com.Guardias.controller;
 
 import com.Guardias.DTO.HoraSesionDto;
+import com.Guardias.exception.ResourceNotFoundException;
 import com.Guardias.model.HoraSesion;
 import com.Guardias.serviceImpl.HoraSesionServiceImpl;
 import java.util.ArrayList;
@@ -33,6 +34,12 @@ public class HoraSesionController {
         
         ArrayList<HoraSesion> sesiones = hsService.consultarTodos();
         
+        if(sesiones.isEmpty()){
+            
+            throw new ResourceNotFoundException("No se encontraron sesiones");
+            
+        }
+        
         ArrayList<HoraSesionDto> sesionesDevolver = new ArrayList<>();
         
         for(HoraSesion horaSesion : sesiones){
@@ -42,6 +49,23 @@ public class HoraSesionController {
         }
         
         return new ResponseEntity<>(sesionesDevolver, HttpStatus.OK);
+    }
+    
+    @GetMapping("/sesiones/{id}")
+    public ResponseEntity<HoraSesionDto> getSesionById(Integer id){
+        
+        HoraSesion horaSesion = hsService.consultar(id);
+        
+        if(horaSesion.getSesion() == null){
+            
+            throw new ResourceNotFoundException("Sesión", "id", id);
+            
+        }
+        
+        HoraSesionDto horaSesionDevolver = HoraSesionDto.toHoraSesionDto(horaSesion);
+        
+        return new ResponseEntity<>(horaSesionDevolver, HttpStatus.OK);
+        
     }
     
 }

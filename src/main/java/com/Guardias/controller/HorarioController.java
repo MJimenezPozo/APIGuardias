@@ -5,6 +5,7 @@
 package com.Guardias.controller;
 
 import com.Guardias.DTO.HorarioDto;
+import com.Guardias.exception.ResourceNotFoundException;
 import com.Guardias.model.Horario;
 import com.Guardias.serviceImpl.HorarioServiceImpl;
 import java.util.ArrayList;
@@ -37,6 +38,12 @@ public class HorarioController {
         
         ArrayList<Horario> horarios = hService.consultarTodos();
         
+        if(horarios.isEmpty()){
+            
+            throw new ResourceNotFoundException("No se encontraron horarios");
+            
+        }
+        
         ArrayList<HorarioDto> horariosDevolver = new ArrayList<>();
         
         for(Horario horario : horarios){
@@ -55,7 +62,7 @@ public class HorarioController {
         
         if(horario.getIdSesion() == null){
             
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            throw new ResourceNotFoundException("Horario", "id", id);
             
         }
         
