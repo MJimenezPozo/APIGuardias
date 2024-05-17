@@ -12,6 +12,6 @@ RUN ./mvnw package
 
 FROM openjdk:17-jdk-slim
 WORKDIR APIGuardias
-COPY --from=build target/*.jar APIGuardias.jar
-ENTRYPOINT ["java", "-jar", "APIGuardias.jar"]
+COPY --from=build target/*.jar Guardias-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "Guardias-0.0.1-SNAPSHOT.jar"]
 
