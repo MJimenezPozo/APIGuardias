@@ -5,9 +5,12 @@
 package com.Guardias.serviceImpl;
 
 import com.Guardias.model.Horario;
+import com.Guardias.model.ResultadoObtenerHorarioTareas;
 import com.Guardias.repository.HorarioRepository;
+import com.Guardias.service.HorarioService;
 import com.Guardias.service.IBaseService;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @author maria
  */
 @Service
-public class HorarioServiceImpl implements IBaseService<Horario>  {
+public class HorarioServiceImpl implements IBaseService<Horario>, HorarioService  {
     
     @Autowired
     private HorarioRepository hRepository;
@@ -46,5 +49,17 @@ public class HorarioServiceImpl implements IBaseService<Horario>  {
     public Horario consultar(Integer id) {
         Optional<Horario> op = hRepository.findById(id);
         return op.isPresent() ? op.get() : new Horario();
+    }
+
+    @Override
+    public ArrayList<Horario> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ResultadoObtenerHorarioTareas> listaHorarios(String id_profesor, String dia) {
+        List resultados = hRepository.getHorarioTareas(id_profesor, dia);
+        return resultados;
+       
     }
 }

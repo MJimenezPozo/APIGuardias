@@ -6,6 +6,7 @@ package com.Guardias.model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import java.util.Date;
 
 /**
  *
@@ -23,6 +24,27 @@ import jakarta.persistence.*;
     @NamedQuery(name = "Horario.findByGrupo", query = "SELECT h FROM Horario h WHERE h.grupo = :grupo"),
     @NamedQuery(name = "Horario.findBySubgrupo", query = "SELECT h FROM Horario h WHERE h.subgrupo = :subgrupo"),
     @NamedQuery(name = "Horario.findByAula", query = "SELECT h FROM Horario h WHERE h.aula = :aula")})
+@NamedNativeQuery(
+    name = "invoca_obtener_horario_tareas",
+    query =
+        "SELECT public.obtener_horario_tareas(:profesor_id, :dia)",
+    resultSetMapping = "ResultadoObtenerHorarioTareas"
+)
+@SqlResultSetMapping(
+    name = "invoca_obtener_horario_tareas",
+    classes = @ConstructorResult(
+        targetClass = ResultadoObtenerHorarioTareas.class,
+        columns = {
+            @ColumnResult(name = "horaSesion", type = Integer.class),
+            @ColumnResult(name = "inicio", type = Date.class),
+            @ColumnResult(name = "fin", type = Date.class),
+            @ColumnResult(name = "clave", type = String.class),
+            @ColumnResult(name = "descripcion", type = String.class),
+            @ColumnResult(name = "aula", type = String.class),
+            @ColumnResult(name = "subgrupo", type = String.class)
+        }
+    )
+)
 public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;
