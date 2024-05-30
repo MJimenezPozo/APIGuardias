@@ -22,5 +22,6 @@ public interface IBaseService<T> {
 //  Page<T> consultarTodos(Pageable pageable);
 
     T consultar(Integer id);
+    
 
 }
