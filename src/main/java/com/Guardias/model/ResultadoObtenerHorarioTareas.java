@@ -12,32 +12,32 @@ import java.util.Date;
  */
 
 public class ResultadoObtenerHorarioTareas {
-   private Integer horaSesion;
+   private Integer sesion;
    private Date inicio;
    private Date fin;
-   private String clave;
+   private String tarea;
    private String descripcion;
    private String aula;
-   private String subgrupo;
+   private String grupos;
 
-    public ResultadoObtenerHorarioTareas(Integer horaSesion, Date inicio, Date fin, String clave, String descripcion, String aula, String subgrupo) {
-        this.horaSesion = horaSesion;
+    public ResultadoObtenerHorarioTareas(Integer sesion, Date inicio, Date fin, String tarea, String descripcion, String aula, String grupos) {
+        this.sesion = sesion;
         this.inicio = inicio;
         this.fin = fin;
-        this.clave = clave;
+        this.tarea = tarea;
         this.descripcion = descripcion;
         this.aula = aula;
-        this.subgrupo = subgrupo;
+        this.grupos = grupos;
     }
    
    
 
-    public Integer getHoraSesion() {
-        return horaSesion;
+    public Integer getSesion() {
+        return sesion;
     }
 
-    public void setHoraSesion(Integer horaSesion) {
-        this.horaSesion = horaSesion;
+    public void setSesion(Integer sesion) {
+        this.sesion = sesion;
     }
 
     public Date getInicio() {
@@ -56,12 +56,12 @@ public class ResultadoObtenerHorarioTareas {
         this.fin = fin;
     }
 
-    public String getClave() {
-        return clave;
+    public String getTarea() {
+        return tarea;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setTarea(String tarea) {
+        this.tarea = tarea;
     }
 
     public String getDescripcion() {
@@ -80,14 +80,11 @@ public class ResultadoObtenerHorarioTareas {
         this.aula = aula;
     }
 
-    public String getSubgrupo() {
-        return subgrupo;
+    public String getGrupos() {
+        return grupos;
     }
 
-    public void setSubgrupo(String subgrupo) {
-        this.subgrupo = subgrupo;
+    public void setGrupos(String grupos) {
+        this.grupos = grupos;
     }
-   
-   
-    
 }
