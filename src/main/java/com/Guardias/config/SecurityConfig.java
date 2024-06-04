@@ -9,6 +9,7 @@ import com.Guardias.jwt.JwtEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,6 +39,10 @@ public class SecurityConfig {
                         .disable())
                 .authorizeHttpRequests(authRequest
                         -> authRequest
+                        .requestMatchers(HttpMethod.GET, "/api/guardias/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/guardias/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/guardias/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/guardias/**").hasAuthority("ADMIN")
                         .requestMatchers(
                         "/auth/**", 
                         "/swagger-ui/**", 
@@ -47,7 +52,7 @@ public class SecurityConfig {
                         "/webjars/**",
                         "/swagger/**",
                         "/configuration/**")
-                                .permitAll()
+                                .permitAll()                        
                         .anyRequest().authenticated()
                         
                 )
