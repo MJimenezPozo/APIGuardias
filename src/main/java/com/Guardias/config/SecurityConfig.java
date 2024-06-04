@@ -5,6 +5,7 @@
 package com.Guardias.config;
 
 import com.Guardias.jwt.JwtAuthenticationFilter;
+import com.Guardias.jwt.JwtEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,7 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
+    private final JwtEntryPoint jwtEntryPoint;
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,8 +38,21 @@ public class SecurityConfig {
                         .disable())
                 .authorizeHttpRequests(authRequest
                         -> authRequest
-                        .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
+                        .requestMatchers(
+                        "/auth/**", 
+                        "/swagger-ui/**", 
+                        "/swagger.html",
+                        "/v3/api-docs/**", 
+                        "/swagger-resources/**",
+                        "/webjars/**",
+                        "/swagger/**",
+                        "/configuration/**")
+                                .permitAll()
                         .anyRequest().authenticated()
+                        
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                    .authenticationEntryPoint(jwtEntryPoint)
                 )
                 .sessionManagement(sessionManager
                         -> sessionManager
