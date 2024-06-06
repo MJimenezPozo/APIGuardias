@@ -62,7 +62,16 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
+        
+        
+        @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handlerArgumentException(IllegalArgumentException ex){
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 
-
-
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handlerRuntimeException(RuntimeException ex){
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_GATEWAY);
+    }    
+    
 }
