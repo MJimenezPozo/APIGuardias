@@ -6,11 +6,13 @@ package com.Guardias.repository;
 
 import com.Guardias.model.Profesor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
- * @author maria
+ * @author Valeria
  */
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
-    
+    @Query("SELECT nextval('public.profesor_id_seq')")
+    Integer nextIdProfesor();
 }
