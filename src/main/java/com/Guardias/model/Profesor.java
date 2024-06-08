@@ -58,6 +58,14 @@ public class Profesor implements Serializable {
         this.apellidosProfesor = apellidosProfesor;
     }
 
+    public Profesor(String idProfesor, String nombreProfesor, String apellidosProfesor, String passwordProfesor) {
+        this.idProfesor = idProfesor;
+        this.nombreProfesor = nombreProfesor;
+        this.apellidosProfesor = apellidosProfesor;
+        this.passwordProfesor = passwordProfesor;
+    }
+    
+
     public int getId() {
         return id;
     }
