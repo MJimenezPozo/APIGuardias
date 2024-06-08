@@ -17,6 +17,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProfesorServiceImpl implements IBaseService<Profesor> {
+
+    public ProfesorServiceImpl(ProfesorRepository profesorRepository) {
+        pRepository=profesorRepository;
+    }
     public ArrayList<Profesor> consultarTodos() {
         return (ArrayList<Profesor>) pRepository.findAll();
     }
