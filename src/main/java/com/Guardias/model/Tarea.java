@@ -43,6 +43,11 @@ public class Tarea implements Serializable {
 
     public Tarea() {
     }
+    
+    public Tarea(String _clave, String _descripcion){
+        this.clave = _clave;
+        this.descripcion = _descripcion;
+    }
 
     public Tarea(String clave) {
         this.clave = clave;

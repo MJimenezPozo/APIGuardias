@@ -18,11 +18,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TareaServiceImpl implements IBaseService<Tarea>{
-
+    
+    public TareaServiceImpl(TareaRepository tareaRepository){
+        tRepository = tareaRepository;
+    }
     
     @Autowired
     private TareaRepository tRepository;
-
+    
     @Override
     public Tarea registrar(Tarea tarea) {
         return tRepository.save(tarea);
