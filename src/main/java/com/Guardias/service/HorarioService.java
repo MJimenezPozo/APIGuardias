@@ -4,6 +4,7 @@
  */
 package com.Guardias.service;
 
+import com.Guardias.DTO.HorarioGuardiasDto;
 import com.Guardias.model.Horario;
 import com.Guardias.model.ResultadoObtenerHorarioTareas;
 import java.util.ArrayList;
@@ -20,4 +21,12 @@ public interface HorarioService {
      * @return 
      */
     List<ResultadoObtenerHorarioTareas> listaHorarios(String id_profesor, String dia);
+    
+    
+    /**
+     * Método que muestra una lista con la sesion y el profesor de guardia de un dia
+     * @param dia el día de la guardia
+     * @return HorarioGuardiaDto
+     */
+    List<HorarioGuardiasDto> getProfesoresGuardia(String dia);
 }

@@ -5,6 +5,7 @@
 package com.Guardias.controller;
 
 import com.Guardias.DTO.HorarioDto;
+import com.Guardias.DTO.HorarioGuardiasDto;
 import com.Guardias.DTO.HorarioTareaDto;
 import com.Guardias.exception.ResourceNotFoundException;
 import com.Guardias.model.Horario;
@@ -100,6 +101,13 @@ public class HorarioController {
         }
         
         return new ResponseEntity<>(horariosDevolver, HttpStatus.OK);
+    }
+    
+    @GetMapping("/guardias")
+    public ResponseEntity<List<HorarioGuardiasDto>> getProfesoresGuardia(@RequestParam String dia){
+        List<HorarioGuardiasDto> listaResultado =  hService.getProfesoresGuardia(dia);
+        
+        return new ResponseEntity<>(listaResultado, HttpStatus.OK);
     }
     
 }
