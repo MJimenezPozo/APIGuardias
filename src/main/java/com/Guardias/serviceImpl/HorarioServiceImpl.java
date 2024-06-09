@@ -4,6 +4,7 @@
  */
 package com.Guardias.serviceImpl;
 
+import com.Guardias.DTO.HorarioGuardiasDto;
 import com.Guardias.model.Horario;
 import com.Guardias.model.ResultadoObtenerHorarioTareas;
 import com.Guardias.repository.HorarioRepository;
@@ -61,5 +62,10 @@ public class HorarioServiceImpl implements IBaseService<Horario>, HorarioService
         List resultados = hRepository.getHorarioTareas(id_profesor, dia);
         return resultados;
        
+    }
+
+    @Override
+    public List<HorarioGuardiasDto> getProfesoresGuardia(String dia) {
+        return hRepository.findPorfesoresGuardia(dia);
     }
 }
