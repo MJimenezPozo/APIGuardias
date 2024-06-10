@@ -7,14 +7,13 @@ package com.Guardias.service;
 import com.Guardias.DTO.HorarioGuardiasDto;
 import com.Guardias.model.Horario;
 import com.Guardias.model.ResultadoObtenerHorarioTareas;
-import java.util.ArrayList;
 import java.util.List;
 /**
  *
  * @author maria
  */
 public interface HorarioService {
-    ArrayList<Horario> list();
+    List<Horario> list();
     
     /**
      * Método que trae los horarios de un profesor para un día en concreto

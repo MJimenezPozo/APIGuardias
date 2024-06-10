@@ -53,8 +53,9 @@ public class HorarioServiceImpl implements IBaseService<Horario>, HorarioService
     }
 
     @Override
-    public ArrayList<Horario> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Horario> list() {
+        List resultado = hRepository.findAll();
+        return resultado;
     }
 
     @Override
