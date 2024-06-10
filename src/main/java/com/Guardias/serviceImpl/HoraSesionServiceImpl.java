@@ -8,6 +8,7 @@ import com.Guardias.model.HoraSesion;
 import com.Guardias.repository.HoraSesionRepository;
 import com.Guardias.service.IBaseService;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,13 @@ public class HoraSesionServiceImpl implements IBaseService<HoraSesion> {
     @Autowired
     private HoraSesionRepository horaSesionRepository;
 
-    public ArrayList<HoraSesion> consultarTodos() {
-        return (ArrayList<HoraSesion>) horaSesionRepository.findAll();
+    public HoraSesionServiceImpl(HoraSesionRepository horaSesionRepository) {
+        this.horaSesionRepository=horaSesionRepository;
+    }
+
+    public List<HoraSesion> consultarTodos() {
+        List resultado=horaSesionRepository.findAll();
+        return  resultado;
     }
 
     @Override
@@ -38,13 +44,24 @@ public class HoraSesionServiceImpl implements IBaseService<HoraSesion> {
 
     @Override
     public void eliminar(Integer id) {
-       horaSesionRepository.deleteById(id);
+       //Sin funcionalidad
     }
-
+    
     @Override
     public HoraSesion consultar(Integer id) {
-        Optional<HoraSesion> optional = horaSesionRepository.findById(id);
+        //Sin funcionalidad
+        return null;
+    }
+    
+    public void eliminar(String sesion) {
+       horaSesionRepository.deleteBySesion(sesion);
+    }
+
+   
+    public HoraSesion consultar(String sesion) {
+        Optional<HoraSesion> optional = horaSesionRepository.findBySesion(sesion);
         return optional.isPresent() ? optional.get() : new HoraSesion();
     }
+    
 
 }
