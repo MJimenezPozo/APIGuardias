@@ -34,7 +34,8 @@ public class HoraSesionController {
     @GetMapping("/sesiones")
     public ResponseEntity<ArrayList<HoraSesionDto>> getSesiones(){
         
-        ArrayList<HoraSesion> sesiones = hsService.consultarTodos();
+        ArrayList<HoraSesion> sesiones;
+        sesiones = (ArrayList)hsService.consultarTodos();
         
         if(sesiones.isEmpty()){
             
