@@ -44,12 +44,10 @@ public class HoraSesionServiceImpl implements IBaseService<HoraSesion> {
 
     @Override
     public void eliminar(Integer id) {
-       //Sin funcionalidad
     }
     
     @Override
     public HoraSesion consultar(Integer id) {
-        //Sin funcionalidad
         return null;
     }
     

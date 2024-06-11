@@ -21,17 +21,12 @@ public class HoraSesionDto {
     private String sesion;
     private String inicio;
     private String fin; 
-    //private List<Horario> horarioList = new ArrayList<Horario>(); //Debería ser horario dto, explorar esto
+    
     
     public HoraSesionDto(HoraSesion hs){
         this.sesion = hs.getSesion();
         this.inicio = HorasUtil.DateToHorasMinutos(hs.getInicio());
         this.fin = HorasUtil.DateToHorasMinutos(hs.getFin());
-//        List<Horario> horarios = hs.getHorarioList();
-//        for (Horario h : horarios){
-//            Horario hSin = new Horario(h);
-//            horarioList.add(hSin);
-//        }
     }
     
     public static HoraSesionDto toHoraSesionDto (HoraSesion horaSesion){

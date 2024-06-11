@@ -35,20 +35,35 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class HorarioServiceTest {
     
+    /**
+     * Repositorio de profesores simulado para interactuar con {@link HorarioServiceImpl}.
+     */
     @Mock
     private HorarioRepository hRepository;
-    
+    /**
+     * Instancia del servicio de horario que se va a probar.
+     */
     @InjectMocks
     private HorarioServiceImpl hService;
-    
+    /**
+     * Controla los recursos cerrables creados por Mockito.
+     */
     private Horario horario;
-    
+    /**
+     * Configura el entorno de prueba inicializando los mocks y creando una instancia de {@link HorarioServiceImpl}
+     * antes de cada prueba.
+     */
     @BeforeEach
     public void setUp() {
         horario = new Horario();
         horario.setIdSesion(7);
     }
-
+    /**
+     * Prueba del método {@link HorarioServiceImpl#consultarTodos()}.
+     * <p>
+     * Verifica que el servicio llama al método `findAll` del repositorio.
+     * </p>
+     */
     @Test
     public void testConsultarTodos() {
         List<Horario> horarios = new ArrayList<>();
@@ -61,6 +76,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).findAll();
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#registrar(Horario)}.
+     * <p>
+     * Verifica que el servicio llama al método `save` del repositorio con el horario proporcionado.
+     * </p>
+     */
     @Test
     public void testRegistrar() {
         when(hRepository.save(any(Horario.class))).thenReturn(horario);
@@ -71,6 +92,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).save(horario);
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#actualizar(Horario)}.
+     * <p>
+     * Verifica que el servicio llama al método `save` del repositorio con el horario actualizado.
+     * </p>
+     */
     @Test
     public void testActualizar() {
         when(hRepository.save(any(Horario.class))).thenReturn(horario);
@@ -81,6 +108,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).save(horario);
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#eliminar(int)}.
+     * <p>
+     * Verifica que el servicio llama al método `deleteById` del repositorio con el ID del horario proporcionado.
+     * </p>
+     */
     @Test
     public void testEliminar() {
         doNothing().when(hRepository).deleteById(anyInt());
@@ -90,6 +123,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).deleteById(1);
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#consultar(int)}.
+     * <p>
+     * Verifica que el servicio llama al método `findById` del repositorio con el ID del horario proporcionado.
+     * </p>
+     */
     @Test
     public void testConsultar() {
         when(hRepository.findById(anyInt())).thenReturn(Optional.of(horario));
@@ -100,6 +139,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).findById(1);
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#consultar(int)}.
+     * <p>
+     * Verifica que el servicio llama al método `findById` del repositorio con el ID del horario proporcionado.
+     * </p>
+     */
     @Test
     public void testConsultarNotFound() {
         when(hRepository.findById(anyInt())).thenReturn(Optional.empty());
@@ -110,7 +155,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).findById(1);
     }
     
-    
+    /**
+     * Prueba del método {@link HorarioServiceImpl#ListaHorarios(String, String)}.
+     * <p>
+     * Verifica que el servicio llama al método `getHorarioTareas` del repositorio y obtiene el horario para ese profesor y ese día.
+     * </p>
+     */
     @Test
     public void testListaHorarios() {
         List<ResultadoObtenerHorarioTareas> resultados = new ArrayList<>();
@@ -122,6 +172,12 @@ public class HorarioServiceTest {
         verify(hRepository, times(1)).getHorarioTareas("PROF001", "L");
     }
     
+    /**
+     * Prueba del método {@link HorarioServiceImpl#GetProfesoresGuardia(String)}.
+     * <p>
+     * Verifica que el servicio llama al método `findProfesoreGuardia` del repositorio y obtiene el día que tiene guardia ese profesor.
+     * </p>
+     */
     @Test
     public void testGetProfesoresGuardia() {
         List<HorarioGuardiasDto> guardias = new ArrayList<>();
