@@ -36,3 +36,7 @@ Proporciona endpoints para crear, leer, actualizar y eliminar registros de guard
     mvn spring-boot:run
     ```
 4. Prueba la API Rest usando Postman o Swagger en http://localhost:8080.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia GNU General Public License v3.0 (GPL-3.0) - mira el archivo [LICENSE](./LICENSE) para más detalles.
